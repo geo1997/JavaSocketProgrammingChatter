@@ -1,5 +1,6 @@
 package SSProgramming;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.awt.List;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -121,7 +122,7 @@ public class ChatServer {
                 // must be done while locking the set of names.
                 while (true) {
                     out.println("SUBMITNAME");
-                    name = in.readLine();
+                    name = BoundedLineReader.readLine(in, 5_000_000);
                     if (name == null) {
                         return;
                     }
@@ -159,7 +160,7 @@ public class ChatServer {
                 // Accept messages from this client and broadcast them.
                 // Ignore other clients that cannot be broadcasted to.
                 while (true) {
-                    String input = in.readLine();
+                    String input = BoundedLineReader.readLine(in, 5_000_000);
                    
                     if (input == null) {
                         return;

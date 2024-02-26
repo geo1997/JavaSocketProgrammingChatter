@@ -1,5 +1,6 @@
 package SSProgramming;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -163,7 +164,7 @@ public class ChatClient {
 	        
 	        // TODO: You may have to extend this protocol to achieve task 9 in the lab sheet
 	        while (true) {
-	            String line = in.readLine();
+	            String line = BoundedLineReader.readLine(in, 5_000_000);
 	            if (line.startsWith("SUBMITNAME")) {
 	                out.println(getName());
 	            } else if (line.startsWith("NAMEACCEPTED")) {
